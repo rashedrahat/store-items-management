@@ -42,6 +42,7 @@ class Store {
     var available = this.stock[name];
     if (available < quantity) {
       console.log("Sorry, we don't have enough!");
+      return;
     } else {
       var itemPrice = this.getPrice(name);
       var currentSale = itemPrice * quantity;

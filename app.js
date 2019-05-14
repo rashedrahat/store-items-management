@@ -16,9 +16,16 @@ class Store {
     }
   }
 
-  addItem(name, price) {
-    this.items.push(name);
-    this.prices[name] = price;
+  addItem(name, price, quantity) {
+    var isExisting = this.isItemAvailable(name);
+    if (isExisting == true) {
+      available = this.stock[name];
+      this.stock[name] = available + quantity;
+    } else {
+      this.items.push(name);
+      this.prices[name] = price;
+      this.stock[name] = quantity;
+    }
   }
 
   getPrice(name) {
@@ -51,7 +58,5 @@ class Store {
 }
 
 var myStore = new Store("RAR Fashion House");
-myStore.addItem("shirt", 500);
-myStore.addItem("pant", 700);
-myStore.getPrice("shirt");
-myStore.getPrice("bread");
+myStore.addItem("shirt", 500, 100);
+myStore.addItem("pant", 700, 200);

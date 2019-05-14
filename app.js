@@ -3,6 +3,8 @@ class Store {
     this.name = name;
     this.items = [];
     this.prices = {};
+    this.stock = {};
+    this.totalSales = 0;
   }
 
   isItemAvailable(name) {
@@ -27,6 +29,24 @@ class Store {
     } else {
       console.log("Sorry! We don't have the item.");
     }
+  }
+
+  sellItem(name, quantity) {
+    var available = this.stock[name];
+    if (available < quantity) {
+      console.log("Sorry, we don't have enough!");
+    } else {
+      var itemPrice = getPrice(name);
+      var currentSale = itemPrice * quantity;
+      this.totalSales = this.totalSales + currentSale;
+      var remaining = available - quantity;
+      this.stock = remaining;
+      console.log("Thank you for the purchase :)");
+    }
+  }
+
+  getTotalSales() {
+    return this.totalSales;
   }
 }
 

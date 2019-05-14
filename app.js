@@ -43,7 +43,7 @@ class Store {
     if (available < quantity) {
       console.log("Sorry, we don't have enough!");
     } else {
-      var itemPrice = getPrice(name);
+      var itemPrice = this.getPrice(name);
       var currentSale = itemPrice * quantity;
       this.totalSales = this.totalSales + currentSale;
       var remaining = available - quantity;
@@ -52,7 +52,7 @@ class Store {
     }
   }
 
-  getTotalSales() {
+  getTotalSale() {
     return this.totalSales;
   }
 }
